@@ -33,16 +33,18 @@ public class ArticleWebsiteController extends Controller {
 	public void submit() {
 		Article article = getModel(Article.class, "article");
 		String str = article.getContent();
+		String content = str;
+		content = content.replace("/ueditor", "ueditor");
 		String[] str1 = str.split("src=\"");
 		if(str1.length>1) {
 			String str2 = str1[1].split("\"")[0];
-			System.out.println(str2);
-			if(str2.substring(0, 1)=="/") {
-				str2 = str2.substring(1);
-			}
+			str2 = str2.replace("/ueditor", "ueditor");
 			article.setCUrlImg(str2);
+		}else {
+			article.setCUrlImg("ueditor/jsp/upload/image/20181009/1539084556320047378.png");
 		}
 		String author = getSessionAttr("noluser.nolname", "xiaoxiao");
+		article.setContent(content);
 		article.setAuthor(author);
 		article.setArtCollect(0);
 		article.setCreatTime(new Date());
