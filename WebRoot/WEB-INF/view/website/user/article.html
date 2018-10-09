@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<base href="http://127.0.0.1/">	
+		<meta charset="UTF-8">
+		<title>文章详情</title>
+		<link href="http://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="asset/css/artdetail.css"/>
+	</head>
+	<body>
+<!--导航条-->
+	<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">博客</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li><a href="#">首页</a></li>
+        <li><a href="#">下载app</a></li>      
+      </ul>
+      <form class="navbar-form navbar-left">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="搜索">
+        </div>
+        <button type="submit" class="btn btn-default">提交</button>
+      </form>
+      <!--没有登录的情况-->
+      <ul class="nav navbar-nav navbar-right">
+      <a class="btn sign-up" id="sign_up" href="/sign_up">注册</a>
+      <a class="btn log-in" id="sign_in" href="/sign_in">登录</a>
+      <a class="btn write-btn" target="_blank" href="/writer#/">
+        <i class="iconfont ic-write">写文章</i></a>      
+       </ul>
+       </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>	
+      
+     <div class="note">
+     	<!--<a target="_blank" href="/apps/redirect?utm_source=side-banner-click" id="web-note-ad-fixed"><span class="close">×</span></a>-->
+     	<div class="detail_article">
+     		<div class="detail_title">
+     			<h1 id="title"></h1>
+     		</div>
+     		
+     		<div class="detail_info">
+     		<div class="detail_author" id="nickname"></div>	
+     		<span class="publish-time" id="creattime"></span>
+     		<!--如果是本人登陆的话显示编辑框-->
+     		<a href="/writer#/notebooks/28914574/notes/33162224" target="_blank" class="edit">编辑文章</a>
+     		</div>
+     		<div class="detail_pic" id="img" src=""></div>
+     		<div class="detail_content" id="con">
+     			<!-- <p>[摘]<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%></p> 
+
+				<p>那么 pageEncoding ， contentType 分别用来做什么那？在解释之前让我们先了解下jsp从被请求到响应经历的三个阶段：</p> 
+				
+				<p>第一阶段：将jsp编译成Servlet（.java）文件。用到的指令是pageEncoding，根据pageEncoding＝“XXX”的指示，找到编码的规则为“XXX”，服务器在将JSP文件编译成.java文件时会根据pageEncoding的设定读取jsp，结果是由指定的编码方案翻译成统一的UTF-8编码的JAVA源码（即.java）。</p> 
+				
+				<p>第二阶段：从Servlet文件（.java）到Java字节码文件（.class），从UTF-8到UTF-8。在这一阶段中，不论JSP编写时候用的是什么编码方案，经过这个阶段的结果全部是UTF-8的encoding的java源码。JAVAC用UTF-8的encoding读取java源码，编译成UTF-8编码的二进制码（即.class），这是JVM对常数字串在二进制码（java encoding）内表达的规范。这一过程是由JVM的内在规范决定的，不受外界控制。</p>  
+				
+				<p>第三阶段：从服务器到浏览器，这在一过程中用到的指令是contentType。服务器载入和执行由第二阶段生成出来JAVA二进制码，输出的结果，也就是在客户端可见到的结果，在这次输出过程中，由contentType属性中的charset来指定，将UTF8形式的二进制码以charset的编码形式来输出.</p>  -->
+     		</div>
+     	</div>
+     	
+     </div> 
+      <!-- <div class="note-bottom">
+      	
+      </div> -->
+    
+  
+
+		<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+		<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<script src="https://cdn.bootcss.com/layer/3.0.3/layer.min.js"></script>	
+	</body>
+	<script >
+		$(document).ready(function(){
+			$.ajax({
+				type:"get",
+				datatype:"json",
+				url:"/website/user/detailarticle?title_id=#(p??)",
+				success:function(result){
+					console.log(result);
+					document.getElementById("img").src=result.artData[0].c_url_img;
+					$("#title").text(result.artData[0].title);
+					$("#nickname").text(result.artData[0].nickname);
+					$("#con").html(result.artData[0].con);
+					$("#creattime").text(result.artData[0].creattime);
+					}
+				});
+			});
+	</script>
+</html>

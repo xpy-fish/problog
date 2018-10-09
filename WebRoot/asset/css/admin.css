@@ -1,0 +1,41 @@
+html,body{
+	height:100%;
+	width:100%;
+}
+body{
+    height: 100%;
+	padding-bottom: 50px;
+	overflow-y: hidden;
+}
+.blog_summary_container{
+	width: 600px;
+	margin: 20px auto;
+}
+.blog_summary_title{
+	display: block;
+	text-align: center;
+	font-size: 20px;
+}
+.blog_full_container{
+	height:100%;
+	width:100%;
+	padding: 0px;
+	margin:0px;
+}
+.blog_iframe_box{
+	height:100%;
+	width:100%;
+	padding: 0px;
+	margin:0px;
+}
+.blog_iframe_box iframe{
+	height: 100%;
+	width:100%;
+}
+.navbar{
+	margin-bottom: 0px;
+}
+@media (min-width: 768px)
+.navbar {
+    border-radius: 0px;
+}

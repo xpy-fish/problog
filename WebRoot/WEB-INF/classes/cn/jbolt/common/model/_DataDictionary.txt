@@ -1,0 +1,117 @@
+Table: click
+--------+---------+------+-----+---------+---------
+ Field  | Type    | Null | Key | Default | Remarks 
+--------+---------+------+-----+---------+---------
+ id     | INT(10) | NO   | PRI |         |         
+ clickN | INT(10) | YES  |     |         | 文章点击量   
+ comN   | INT(10) | YES  |     |         | 评论量     
+--------+---------+------+-----+---------+---------
+
+Table: column
+-----------------+--------------+------+-----+---------+---------
+ Field           | Type         | Null | Key | Default | Remarks 
+-----------------+--------------+------+-----+---------+---------
+ id              | INT(10)      | NO   | PRI |         | 专栏id    
+ count_article   | INT(10)      | YES  |     |         | 专栏文章数   
+ col_name        | VARCHAR(255) | YES  |     |         | 专栏名字    
+ count_userfocus | INT(10)      | YES  |     |         | 用户关注数   
+-----------------+--------------+------+-----+---------+---------
+
+Table: comment
+-------+--------------+------+-----+---------+---------
+ Field | Type         | Null | Key | Default | Remarks 
+-------+--------------+------+-----+---------+---------
+ id    | INT(10)      | NO   | PRI |         |         
+ comp  | VARCHAR(12)  | YES  |     |         | 评论人     
+ comc  | VARCHAR(254) | YES  |     |         | 评论内容    
+ comt  | VARCHAR(40)  | YES  |     |         | 评论时间    
+ comac | VARCHAR(30)  | YES  |     |         | 评论的文章id 
+ comGN | INT(10)      | YES  |     |         | 点赞数     
+ comBN | INT(10)      | YES  |     |         | 踩的数目    
+-------+--------------+------+-----+---------+---------
+
+Table: noluser
+--------------+--------------+------+-----+---------+---------
+ Field        | Type         | Null | Key | Default | Remarks 
+--------------+--------------+------+-----+---------+---------
+ id           | INT(10)      | NO   | PRI |         |         
+ nolname      | VARCHAR(254) | YES  |     |         |         
+ psw          | VARCHAR(254) | YES  |     |         |         
+ email        | VARCHAR(254) | YES  |     |         |         
+ icon         | VARCHAR(254) | YES  |     |         | 头像      
+ enable       | BIT(1)       | YES  |     |         |         
+ nickname     | VARCHAR(255) | YES  |     |         | 昵称      
+ sex          | VARCHAR(10)  | YES  |     |         | 性别      
+ birthday     | VARCHAR(255) | YES  |     |         | 生日      
+ articlesum   | INT(10)      | YES  |     |         | 发表文章数目  
+ discription  | TEXT(65535)  | YES  |     |         | 用户描述    
+ friends_like | INT(10)      | YES  |     |         | 用户关注别人数目
+ friends_fans | INT(10)      | YES  |     |         | 用户被关注数目 
+ phonenum     | TEXT(65535)  | YES  |     |         | 电话号码    
+--------------+--------------+------+-----+---------+---------
+
+Table: user_collect
+------------+---------+------+-----+---------+---------
+ Field      | Type    | Null | Key | Default | Remarks 
+------------+---------+------+-----+---------+---------
+ id         | INT(10) | NO   | PRI |         | 用户与收藏文章表id
+ user_id    | INT(10) | YES  |     |         | 用户id    
+ article_id | INT(10) | YES  |     |         | 文章id    
+------------+---------+------+-----+---------+---------
+
+Table: user_column
+-----------+---------+------+-----+---------+---------
+ Field     | Type    | Null | Key | Default | Remarks 
+-----------+---------+------+-----+---------+---------
+ id        | INT(10) | NO   | PRI |         | 用户关注专栏表 
+ user_id   | INT(10) | YES  |     |         | 用户id    
+ column_id | INT(10) | YES  |     |         | 专栏id    
+-----------+---------+------+-----+---------+---------
+
+Table: user_comment
+------------+---------+------+-----+---------+---------
+ Field      | Type    | Null | Key | Default | Remarks 
+------------+---------+------+-----+---------+---------
+ id         | INT(10) | NO   | PRI |         |         
+ user_id    | INT(10) | YES  |     |         | 用户的id   
+ comment_id | INT(10) | YES  |     |         | 评论的id   
+ yes        | BIT(1)  | YES  |     |         | 1为赞0为踩  
+------------+---------+------+-----+---------+---------
+
+Table: user_focus
+----------+---------+------+-----+---------+---------
+ Field    | Type    | Null | Key | Default | Remarks 
+----------+---------+------+-----+---------+---------
+ id       | INT(10) | NO   | PRI |         | 用户关注表id 
+ user_id  | INT(10) | YES  |     |         | 用户id    
+ focus_id | INT(10) | YES  |     |         | 被关注用户id 
+----------+---------+------+-----+---------+---------
+
+Table: article
+-------------+----------------------+------+-----+---------+---------
+ Field       | Type                 | Null | Key | Default | Remarks 
+-------------+----------------------+------+-----+---------+---------
+ id          | INT(10)              | NO   | PRI |         |         
+ title       | VARCHAR(254)         | YES  |     |         | 文章标题    
+ creatTime   | DATE(10)             | YES  |     |         | 文章创建时间  
+ tags        | INT(10)              | YES  |     |         | 文章标签分类  
+ content     | LONGTEXT(2147483647) | YES  |     |         | 文章内容    
+ author      | VARCHAR(254)         | YES  |     |         | 文章作者    
+ isPermit    | INT(10)              | YES  |     |         | 是否允许发表显示
+ s_content   | TEXT(65535)          | YES  |     |         | 文章简介    
+ c_url_img   | VARCHAR(255)         | YES  |     |         |         
+ c_url       | VARCHAR(255)         | YES  |     |         | 文章的url  
+ userid      | INT(10)              | YES  |     |         | 写文章的用户id
+ nickname    | VARCHAR(255)         | YES  |     |         | 用户的昵称   
+ art_collect | INT(10)              | YES  |     |         | 文章收藏量   
+-------------+----------------------+------+-----+---------+---------
+
+Table: salt
+----------+--------------+------+-----+---------+---------
+ Field    | Type         | Null | Key | Default | Remarks 
+----------+--------------+------+-----+---------+---------
+ username | VARCHAR(255) | YES  |     |         |         
+ id       | INT(10)      | NO   | PRI |         |         
+ salt     | VARCHAR(255) | YES  |     |         |         
+----------+--------------+------+-----+---------+---------
+

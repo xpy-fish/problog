@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<base href="#(basepath)">
+    <meta charset="UTF-8">
+    <title>WHUT博客</title>
+<!--     <link href="http://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css"  rel="stylesheet"> -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet"  type="text/css"  href="asset/css/webHeadNav.css">
+		<link rel="stylesheet"  type="text/css"  href="asset/css/webcolumn.css">
+</head>
+<body>
+<!-- 主页面导航条 -->
+		<div class="person_nav">
+			<nav class="navbar navbar-default">
+			  <div class="container-fluid">
+			    <!-- Brand and toggle get grouped for better mobile display -->
+			    <div class="navbar-header">
+			      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+			        <span class="sr-only">Toggle navigation</span>
+			        <span class="icon-bar"></span>
+			        <span class="icon-bar"></span>
+			        <span class="icon-bar"></span>
+			      </button>
+			      <a class="navbar-brand blog_person_logo" style="height:60px;color:#337ab7" href="#">启程·博客</a>
+			    </div>
+			
+			    <!-- Collect the nav links, forms, and other content for toggling -->
+			    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			      <ul class="nav navbar-nav">
+			        <li><a href="website/homePage">首页</a></li>
+			        <li><a href="website/column">专栏</a></li>
+			        <li><a href="website/message">消息</a></li>
+			        <li><a href="#">下载app</a></li>      
+			      </ul>
+			      <form id="searchForm" class="navbar-form navbar-left" action="website/search" method="post" target="_blank">
+			        <div class="input-group">
+			        	<input type="hidden" name="homeSearch" value="true"/>
+			            <input type="text" name="searchContent" class="form-control" placeholder="Search">
+				        <span class="input-group-btn">
+					        <button onclick="doFormSubmit()" class="btn btn-default">
+					        	<span class="glyphicon glyphicon-search"></span>
+					        </button>
+					    </span>
+				    </div>
+			      </form>
+			      <!--没有登录的情况-->
+			      <ul class="nav navbar-nav navbar-right" id="logstate">
+			          <li><a class="blog_head_nav_login" id="sign_in" href="website/login">登录</a></li>
+		              <li><a class="blog_head_nav_signup" style="color:red" id="sign_up" href="website/register">注册</a></li>
+			          <li class="dropdown" id = "loginfo">
+		                 <a href="#" class="dropdown-toggle" style="margin-top:-12px;margin-bottom:-12px" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><img id="logicon" class="img-circle blog_head_icon" src="asset/img/boke.jpg" alt="头像"/> <span class="caret"></span></a>
+		                 <ul class="dropdown-menu">
+				            <li><a href="website/user">我的主页</a></li>
+				            <li><a href="#">个人信息</a></li>
+				            <li><a href="#">喜欢的文章</a></li>
+				            <li role="separator" class="divider"></li>
+				            <li><a href="website/homePage/logout">退出登录</a></li>
+		                </ul>
+		             </li> 
+						 <li class="blog_head_nav_a"><a class="blog_head_nav_write"  target="_blank" href="website/article">
+						     <span class="glyphicon glyphicon-pencil"></span>写博客
+						     </a>
+						 </li>
+			     </ul>
+			  </div>
+		</div>
+	</nav>
+</div>
+
+
+<!-- 界面主体部分 -->
+     <div class="blog_column_main">
+			 <div class="container" style="height: 100%;">
+				  <div class="row">
+						<div class="col-lg-3 col-md-3 col-sm-3 blog_column_main_row_left" >
+							  <ul class="blog_column_main_ul">
+									<li class="blog_column_main_col_head">
+										<a href="#">全部专栏</a>
+									</li>
+									
+									 <!--active无效果 -->
+									<li class="blog_column_main_col active"> 
+										<a href="website/column/story?tag=1" target="blog_column_story_iframe"><img src="asset/img/Hydrangeas.jpg"/>故事</a>
+									</li>
+									<li class="blog_column_main_col">
+										<a href="website/column/story?tag=2" target="blog_column_story_iframe"><img src="asset/img/Jellyfish.jpg"/>摄影</a>
+									</li>
+									<li class="blog_column_main_col">
+										<a href="website/column/story?tag=3" target="blog_column_story_iframe"><img src="asset/img/Desert.jpg"/>自然科普</a>
+									</li>
+									<li class="blog_column_main_col">
+										<a href="website/column/story?tag=4" target="blog_column_story_iframe"><img src="asset/img/Koala.jpg"/>手绘</a>
+									</li>
+									<li class="blog_column_main_col">
+										<a href="website/column/story?tag=5" target="blog_column_story_iframe"><img src="asset/img/Penguins.jpg"/>读书</a>
+									</li>
+									<li class="blog_column_main_col">
+										<a href="website/column/story?tag=6" target="blog_column_story_iframe"><img src="asset/img/Tulips.jpg"/>启程电影</a>
+									</li>
+									<li class="blog_column_main_col">
+										<a href="website/column/story?tag=7" target="blog_column_story_iframe"><img src="asset/img/Chrysanthemum.jpg"/>@IT·互联网</a>
+									</li>
+								</ul>
+					  </div>
+						<!-- <div class="col-lg-1 col-md-1 col-sm-1" style="background: #000000;height: 400px;">
+						</div> -->
+						<div class="col-lg-8 col-md-8 col-sm-8 blog_column_main_row_right" id="rightContainer" style="margin-left: 40px;">
+							 <div class="blog_column_iframe_box">
+									<iframe name="blog_column_story_iframe" src="http://cn.bing.com" frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="auto"></iframe>
+							 </div>
+							 <!-- <button class="blog_column_add_button" id="addBtn">加载更多</button> -->
+						</div>
+						<div class="col-lg-1 col-md-1 col-sm-1" ></div>
+				 </div>
+			 </div>
+		 </div>
+	
+<!-- <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<!-- <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+<script type="text/javascript">
+
+   $(document).ready(function(){
+		if(#(state??)){
+			$("#sign_in").hide();
+			$("#sign_up").hide(); 
+			document.getElementById("logicon").src = "#(icon??)"; 
+		}else{
+			$("#loginfo").hide();
+		}
+   });
+   function doFormSubmit(){
+		var str = $("input[name='searchContent']").val();
+		if(str.replace(/\s+/g,"")==null){
+			alert("请输入内容");
+		}else{
+			$("#searchForm").submit();
+		}	
+	}	
+	
+</script>
+</body>

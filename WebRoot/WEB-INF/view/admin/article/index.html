@@ -1,0 +1,230 @@
+#@innerlayout()
+
+#define main()
+	<div id="toolbar">
+		<div class="form-inline" role="form">
+			<div class="form-group">
+				<input name="keywords" class="form-control" placeholder="关键词查询" type="text"/>
+			</div>
+			<div class="form-group">
+				<select name="enable" class="form-control">
+					<option value="">是否发表</option>
+					<option value="true">是</option>
+					<option value="false">否</option>
+				</select>
+			</div>
+			<button class="btn btn-primary" id="searchBtn">查询</button>
+		</div>
+	</div>
+	<table id="table"
+		data-toolbar="#toolbar"
+		data-show-refresh="true"
+		data-show-toggle="true"
+		data-show-columns="true"
+		data-query-params="queryParams">
+		<!-- 框架中的pagination放在table id后面 -->
+	</table> 
+#end
+#define js()
+	<script>
+		var table = $('#table');
+		window.enableEvents = {
+			'click button': function (e, value, row, index) {
+				layer.confirm('确认'+(value?"禁用":"启用")+'', {icon: 3, title:'请确认'}, function(index){
+					  //do something
+					$.ajax({
+					type:"get",
+					datatype:"json",
+					url:"admin/user/toggleEnable/"+row.id,
+					//data:{id:row.id,enable:(!value)}, post方式传递数据到后台
+					success:function(ret){
+						if(ret.state=="ok")	{
+							layer.msg('操作成功',{icon:1,time:1000});
+							row['enable']=!row['enable'];
+							table.bootstrapTable('updateRow', {
+								index:index,
+								row:row
+							});
+	  					}
+					}
+				   })
+				   layer.close(index);
+				});
+			}
+		}
+		window.operateEvents = {
+			'click .edit': function (e, value, row, index) {
+				edit(row.id);
+			},
+			'click .remove': function (e, value, row, index) {
+				layer.confirm('是否删除此用户?', {icon: 3, title:'请确认'}, function(index){
+					  //do something
+					$.ajax({
+					type:"get",
+					datatype:"json",
+					url:"admin/user/del/"+row.id,
+					success:function(ret){
+						console.log(ret);
+						console.log(ret.state);
+  						if(ret.state=="ok")	{
+							layer.msg('删除成功',{icon:1,time:1000});
+							table.bootstrapTable('remove', {
+								field: 'id',
+								values: [row.id]
+							});
+  	  					}
+					}
+				   })
+				   layer.close(index);
+				});
+			}
+		};
+		$("#searchBtn").on("click",function(){
+			table.bootstrapTable('refresh');
+		});
+		
+		function queryParams(params) {
+        $('#toolbar').find('input,select').each(function () {
+            params[$(this).attr('name')] = $(this).val();
+        });
+        return params;
+        };
+		
+		table.bootstrapTable({
+		pagination:true,  //和bootstrap框架源码中使用不同
+		height:550,
+		sidePagination:"server",
+		pageList:[5,10,15,20,25],
+		url:"admin/article/list",
+		columns: [{
+			field: 'index',
+			title: '编号',
+			align: 'center',
+			formatter: formatIndex
+		}, {
+			field: 'title',
+			title: '文章名',
+			align: 'center',
+			editable:{
+				type:'text',
+				validate:function(v){
+					if(!($.trim(v))){
+						return "文章名不能为空";
+					}
+				}
+			}
+		}, {
+			field: 'isPermit',
+			title: '是否发表',
+			align: 'center',
+			events: enableEvents,
+			formatter: formatEnable
+		}, {
+			field: 'tags',
+			title: '标签',
+			align: 'center'
+		}, {
+			field: 'author',
+			title: '作者',
+			align: 'center'
+		},{
+			field: 'readTimes',
+			title: '阅读次数',
+			align: 'center'
+		},{
+			field: 'likes',
+			title: '点赞次数',
+			align: 'center'
+		},{
+			field: 'collects',
+			title: '收藏次数',
+			align: 'center'
+		},{
+			field: 'operate',
+			title: '操作',
+			align: 'center',
+            events: operateEvents,
+            formatter: operateFormatter
+		},],
+		onResetView:function(){
+			$("[data-toggle='tooltip']").tooltip();  
+		},
+		onEditableSave: function (field, row, oldValue, $el) {
+			table.bootstrapTable('resetView');
+	    	 var article={
+	    			"article.id":row.id,
+	    			"noluser.title":row.title,
+	    	 };
+            $.ajax({
+                type: "post",
+                url: "admin/article/xediSave",
+                data: article,
+                dataType: 'JSON',
+                success: function (ret) {
+                   console.log(ret);
+                   if(ret.state=="ok"){
+	               	   layer.msg("更新成功",{icon:1,time:1000});
+	    		   }else{
+	    			   layer.msg("更新失败",{icon:5,time:1000});
+    			  }	
+                }
+			});
+		}
+	});
+	setTimeout(function () {        //刷新页面
+            table.bootstrapTable('resetView');
+        }, 200);
+    function formatEnable(value,row,index){
+		var btn;
+		if(value){
+			btn='<button data-toggle="tooltip" class="btn btn-success btn-xs"  title="点击禁用"><span class="glyphicon glyphicon-eye-open"></span></button>'
+		}else{
+			btn='<button data-toggle="tooltip" class="btn btn-danger btn-xs"  title="点击启用"><span class="glyphicon glyphicon-eye-close"></span></button>'
+		}
+		return [btn].join('');
+    }
+    function formatIndex(value,row,index){
+        console.log(value,row,index);
+        return [index+1].join('');
+        }
+	function operateFormatter(value, row, index) {
+		//row为获取的datatemp.json数据
+        return [
+            '<button data-toggle="tooltip" class="edit btn btn-success btn-xs"  title="编辑">',  //onclick=initEdit('+row.id+')此处的row.id为什么要使用+号
+            '<i class="glyphicon glyphicon-pencil"></i>',
+            '</button>',
+            '<button data-toggle="tooltip" class="remove btn btn-danger btn-xs"  title="删除">',
+            '<i class="glyphicon glyphicon-remove"></i>',
+            '</button>'
+        ].join('');
+    }
+	//$("[data-toggle='tooltip']").tooltip();   //没有效果
+
+	$(".columns.columns-right.btn-group.pull-right").prepend('<button class="btn btn-success" id="addBtn" title="新增"><i class="glyphicon glyphicon-plus"></i></button>');
+	//append和prepend均为jquery中的方法
+	
+	$("#addBtn").on("click",function(){
+		edit(0); 
+	});
+	function refreshThisTable(){
+		table.bootstrapTable('refresh');	
+    }
+
+    function edit(id){
+    	layer.open({
+			  type: 2,
+			  title: '新增',
+			  maxmin:true,
+			  area:['800px','400px'],
+			  btn:['新增','取消'],
+			  content: 'admin/article/edit/'+id,
+			  yes:function(index,layero){
+				 var iframeName =  layero.find('iframe')[0]['name'];
+				 var iframeWindow = window[iframeName];
+				 iframeWindow.submitThisForm();
+			  }
+			});  
+    }
+    
+	</script>
+#end

@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<base href="#(basepath)">
+    <meta charset="UTF-8">
+    <title>文章细究</title>
+<!--     <link href="http://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css"  rel="stylesheet"> -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet"  type="text/css"  href="asset/css/article.css">
+    <link rel="stylesheet"  type="text/css"  href="asset/css/webHeadNav.css">
+</head>
+<body>
+<input type="hidden" name="comment.id"  value="#(comment.id??)"  />
+
+
+<!-- 主页面导航条 -->
+		<div class="person_nav">
+			<nav class="navbar navbar-default">
+			  <div class="container-fluid">
+			    <!-- Brand and toggle get grouped for better mobile display -->
+			    <div class="navbar-header">
+			      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+			        <span class="sr-only">Toggle navigation</span>
+			        <span class="icon-bar"></span>
+			        <span class="icon-bar"></span>
+			        <span class="icon-bar"></span>
+			      </button>
+			      <a class="navbar-brand blog_person_logo" style="height:60px;color:#337ab7" href="#">启程·博客</a>
+			    </div>
+			
+			    <!-- Collect the nav links, forms, and other content for toggling -->
+			    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			      <ul class="nav navbar-nav">
+			        <li><a href="website/homePage">首页</a></li>
+			        <li><a href="website/column">专栏</a></li>
+			        <li><a href="website/message">消息</a></li>
+			        <li><a href="#">下载app</a></li>      
+			      </ul>
+			      <form id="searchForm" class="navbar-form navbar-left" action="website/search" method="post" target="_blank">
+			        <div class="input-group">
+			        	<input type="hidden" name="homeSearch" value="true"/>
+			            <input type="text" name="searchContent" class="form-control" placeholder="Search">
+				        <span class="input-group-btn">
+					        <button onclick="doFormSubmit()" class="btn btn-default">
+					        	<span class="glyphicon glyphicon-search"></span>
+					        </button>
+					    </span>
+				    </div>
+			      </form>
+			      <!--没有登录的情况-->
+			      <ul class="nav navbar-nav navbar-right" id="logstate">
+			          <li><a class="blog_head_nav_login" id="sign_in" href="website/login">登录</a></li>
+		              <li><a class="blog_head_nav_signup" style="color:red" id="sign_up" href="website/register">注册</a></li>
+			          <li class="dropdown" id = "loginfo">
+		                 <a href="#" class="dropdown-toggle" style="margin-top:-12px;margin-bottom:-12px" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><img id="logicon" class="img-circle blog_head_icon" src="asset/img/boke.jpg" alt="头像"/> <span class="caret"></span></a>
+		                 <ul class="dropdown-menu">
+				            <li><a href="website/user">我的主页</a></li>
+				            <li><a href="#">个人信息</a></li>
+				            <li><a href="#">喜欢的文章</a></li>
+				            <li role="separator" class="divider"></li>
+				            <li><a href="#">退出登录</a></li>
+		                </ul>
+		             </li> 
+						 <li class="blog_head_nav_a"><a class="blog_head_nav_write"  target="_blank" href="website/article">
+						     <span class="glyphicon glyphicon-pencil"></span>写博客
+						     </a>
+						 </li>
+			     </ul>
+			  </div>
+		</div>
+	</nav>
+</div>
+
+
+
+<div class="blog_main_container">
+    <div class="line"><div></div></div>
+    <div class="container">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <h1 id="title"></h1>
+<!-- ----------------------------------------------------------收藏行-------------------------------------------------------- -->          
+                <div style="margin-top:20px;margin-bottom:15px">
+	                <div  style="width:70px;display: inline-block;"><a id="authorId" href="" target="_blank"><img  id="youricon"  class="img-circle blog_head_icon"  style="width:50px;heighe:50px;display:inline-block;vertical-align:middle" alt="头像"/></a></div>
+	                <div  style="display: inline-block;"><span id="aut" style="display: inline-block;font-size: 22px;"></span></div>
+	                <div  style="display:inline-block;"><button id="follow" class="glyphicon glyphicon-plus" style="border:none;background-color: #4CAF50;font-size:18px;height:25px;border-radius: 30px;color:white;">关注</button></div> 
+<!-- 	                <div  style="display:inline-block;"><button id="followed" class="glyphicon glyphicon-ok" style="border:none;background-color: #ccc;font-size:18px;height:25px;border-radius: 30px;color:gray;">已关注</button></div>  -->
+	                <div  style="display: inline-block;float:right"><span style="display: inline-block;font-size: 22px;">收藏</span></div>
+	                <div  style="display: inline-block;float:right"><button id="like"class="glyphicon glyphicon-heart" style="outline:none;border:none;background:white;font-size: 32px;color:gray;" ></button></div>
+<!-- 	                <div  style="display: inline-block;float:right"><button id="liked"class="glyphicon glyphicon-heart" style="border:none;background:white;font-size: 32px;color:red;" ></button></div> -->
+	            </div>
+	            
+	            
+	            
+
+                <div id="content"></div>
+                <div class="line dline"><div></div></div>
+                <div class="comment">
+                	<div class="row ipu_row">
+                		<input type="text" class="form-control" id="ipu_com" placeholder="雁过留声~">
+                		<button id="but_com"  class="btn btn-default">发表</button>
+                	</div>
+                	
+                	<div id="loc_comment"></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+</body >
+<!-- <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script> -->
+<!-- <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script>
+var comN;
+var comOK;
+var comYES;
+var numgn;
+var numbn;
+
+function getJsonObjLength(jsonObj) {
+		var Length = 0;
+        for (var item in jsonObj) {
+           Length++;
+       }
+        return Length;
+}
+
+function createDiv(i){
+	var ht = '<p id="p_com'+i+'"></p><div>'+
+			'<button onclick="comment_G(this)" class="butGN glyphicon glyphicon-thumbs-up" id="but_GN'+i+'" ><p id="numGN"></p>'+
+			'</button><button onclick="comment_B(this)" class="butBN glyphicon glyphicon-thumbs-down" id="but_BN'+i+'">'+
+			'<p id="numBN"></p></button></div>'
+	$("#loc_comment").prepend(ht);
+}
+
+function getComData(){
+	$("#loc_comment").html("");
+	$.ajax({
+			type:"get",
+			datatype:"json",
+			url:"website/homePage/com_list?title_id=#(mystr??)",
+			success:function(cdata){
+				console.log(cdata);
+				comN = getJsonObjLength(cdata.comData);
+				for(i=0;i<comN;i++){
+					createDiv(i);
+					$("#p_com"+i).text(cdata.comData[i].comt +cdata.comData[i].comp +" ："+ cdata.comData[i].comc);
+ 					$("#but_GN"+i).attr("name",cdata.comData[i].id);
+ 					$("#but_BN"+i).attr("name",cdata.comData[i].id);
+ 					userandcomment(cdata.comData[i].id);
+ 	
+ 					$("#numGN").text(numgn+"赞");
+ 					$("#numBN").text(numbn+"踩");
+ 					if(!comOK){		
+						if(comYES){
+							$("#but_GN"+i).addClass("blue");
+							$("#but_GN"+i).attr("onclick","GNgone()");
+							$("#but_BN"+i).attr("onclick","GNgone()");
+							}else{
+								$("#but_BN"+i).addClass("red");
+								$("#but_BN"+i).attr("onclick","BNgone()");
+								$("#but_GN"+i).attr("onclick","BNgone()");
+							}
+ 	 				}
+				}	
+			}
+		});
+}
+
+$(document).ready(function(){
+	$("#followed").hide();
+	if(#(state??)){
+		$("#sign_in").hide();
+		$("#sign_up").hide(); 
+		document.getElementById("logicon").src = "#(icon??)"; 
+	}else{
+		$("#loginfo").hide();
+		}
+	$.ajax({
+		type:"post",
+		datatype:"json",
+		url:"website/homePage/art",
+		data:{"title_id":#(mystr??),"userID":#(userID??)},
+		success:function(result){
+		console.log(result);
+		if(result.aut[0].icon != null){
+			document.getElementById("youricon").src= result.aut[0].icon;
+		}
+		
+		document.getElementById("authorId").href="website/user?userid="+result.aut[0].id;
+		//document.getElementById("logicon").src = "#(icon??)"
+		$("#title").text(result.artData[0].title);
+		$("#content").html(result.artData[0].content);
+		$("#aut").text("文/"+result.aut[0].nolname);
+		$("#follow").attr("name",result.artData[0].userid);
+		$("#followed").attr("name",result.artData[0].userid);
+		//$("#logicon").attr("src", "upload/temp/-4530d622cce02fdb.jpg");
+		$("#like").attr("name",result.artData[0].userid);
+		if(#(userID??)!=0){
+			if(result.collect==0){
+				$("#like").css("color","gray");
+			}else{
+				$("#like").css("color","red");
+			}
+			if(result.foc==0){
+				$("#follow").css("background-color","#4CAF50","color","white");
+				$("#follow").removeClass("glyphicon glyphicon-ok");
+				$("#follow").addClass("glyphicon glyphicon-plus"); 
+				$("#follow").text("关注");
+			}else{
+				$("#follow").css("background-color","#ccc","color","gray");
+				$("#follow").removeClass("glyphicon glyphicon-plus"); 
+				$("#follow").addClass("glyphicon glyphicon-ok");
+				$("#follow").text("已关注");
+			}
+		}
+		getComData();
+		}
+	});		
+});
+
+$("#but_com").click(function(){  
+	var com_c=$("#ipu_com").val();
+	document.getElementById("ipu_com").value="";
+	if(com_c!="" && #(userID??)!=0){
+		$.ajax({
+			type:"post",
+			url:"website/homePage/com_submit",
+			data:{"comc":com_c,"comt":(new Date()).toLocaleString(),"comac":#(mystr??),"comN":comN+1,"title_id":#(mystr??),"userID":#(userID??)},
+			success:function(data){
+				getComData();
+			}
+		});
+	}
+});
+
+function comment_G(but){
+    $.ajax({
+    	type:"post",
+    	datatype:"json",
+		url:"website/homePage/butGN",
+		data:{"id":but.name,"userID":#(userID??)},
+		success:function(data){
+			getComData();
+        }
+    });
+}
+function comment_B(but){
+    $.ajax({
+    	type:"post",
+    	datatype:"json",
+		url:"website/homePage/butBN",
+		data:{"id":but.name,"userID":#(userID??)},
+		success:function(data){
+			getComData();
+        }
+    });
+}
+
+function userandcomment(but_id){
+	 $.ajax({
+	    	type:"post",
+	    	datatype:"json",
+			url:"website/homePage/uandc",
+			data:{"id":but_id,"userID":#(userID??)},
+			async:false,
+			success:function(data){
+				comOK=data.comO;
+				comYES=data.Yes;
+				numgn=data.numgn;
+				numbn=data.numbn;
+	        }
+	    });
+}
+function GNgone(){
+	alert("已经赞过了！！！");
+}
+function BNgone(){
+	alert("已经踩过了！！！");
+}
+
+$("#follow").click(function(){
+	$.ajax({
+		type:"post",
+		data:{"focusID":this.name,"userID":#(userID??)},	
+		url:"website/homePage/setfollow",
+		success:function(data){
+			console.log(data);
+			if(#(userID??)!=0){
+				if(data==0){
+					$("#follow").css("background-color","#4CAF50","color","white");
+					$("#follow").removeClass("glyphicon glyphicon-ok");
+					$("#follow").addClass("glyphicon glyphicon-plus"); 
+					$("#follow").text("关注");
+				}else{
+					$("#follow").css("background-color","#ccc","color","gray");
+					$("#follow").addClass("glyphicon glyphicon-ok");
+					$("#follow").text("已关注");
+				}
+			}
+		}
+	});
+});
+
+$("#like").click(function(){
+	$.ajax({
+		type:"post",
+		data:{"articleID":#(mystr??),"userID":#(userID??)},	
+		url:"website/homePage/setlike",
+		success:function(data){
+			console.log(data);
+			if(#(userID??)!=0){
+				if(data==0){
+					$("#like").css("color","gray");
+				}else{
+					$("#like").css("color","red");
+				}
+			}
+		}
+	});
+});
+
+
+</script>
+  
+</html>

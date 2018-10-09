@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<base href="#(basepath)">
+<meta charset="UTF-8">
+<title>Insert title here</title>
+		<link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+		<link rel="stylesheet" href="" />
+</head>
+<body>
+	
+	<div class="row">
+		<div class="col-lg-6 col-sm-6 col-md-6">
+			<div class="panel panel-default ">
+				<div class="panel-heading">上传头像</div>					
+				<div class="panel-body" >
+				<form action="upload/formNormal" method="post" enctype="multipart/form-data" id="ajaxForm">
+					<div class="form-group">
+						<input type="file" class="form=control" name="file"/>
+					</div>
+					<button type="button" onclick="ajaxUpload('ajaxForm')" class="btn btn-primary">上传文件</button>	
+				
+				</form>
+								
+				</div>
+
+		</div>
+
+	
+	</div>
+ </div>
+	<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/layer/3.0.3/layer.min.js"></script>
+    <script src="https://cdn.bootcss.com/jquery.form/4.2.2/jquery.form.min.js"></script>
+
+	
+   
+    <script>
+    
+    function ajaxUpload(formId){
+       
+        $("#"+formId).ajaxSubmit({
+            type:"post",
+            url:"website/user/ajaxForm",//调用controller中的ajaxForm方法
+            dataType:"json",
+            async:false,
+            success:function(data){
+               console.log(data);
+              // render("common/success.html");
+               alert("已上传，请确认");
+              // parent.layer.closeAll(); 
+               
+//                 JsonConsoleProcess(data); 
+
+                }           
+            });
+
+        }
+
+
+
+
+
+    
+      </script> 
+ </body>     
+</html>

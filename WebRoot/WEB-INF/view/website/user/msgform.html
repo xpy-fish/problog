@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!-- <base href="http://127.0.0.1/"> -->
+<base href="#(basepath)">
+<meta charset="UTF-8">
+<title>修改信息</title>
+<link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<form id="form" class="form-horizontal" role="form" action="website/user/submit">
+<!-- 隐藏域 -->
+<input type="hidden" name="user.id" value="#(user.id??)" />
+
+    <div class="form-group"> 
+        <label class="control-label col-sm-2">姓名</label>
+        <div class="col-sm-6">
+            <input type="text" id="username" class="form-control" value="#(user.nolname??)" name="user.nolname" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-sm-2">昵称</label>
+        <div class="col-sm-6">
+            <input type="text" id="nickname" class="form-control" value="#(user.nickname??)" name="user.nickname" />
+        </div>
+    </div>
+ 	 <div class="form-group">
+        <label class="control-label col-sm-2">生日</label>
+        <div class="col-sm-6">
+            <input type="text" id="birthday" class="form-control" value="#(user.birthday??)" name="user.birthday" />
+        </div>
+    </div> 
+     <div class="form-group">
+        <label class="control-label col-sm-2">性别</label>
+        <div class="col-sm-3">
+            <select name=user.sex class="form-control" >
+               <option #((user!=nulll&&user.sex=="男")?"selected":"") value="男">男</option>
+               <option #((user!=nulll&&user.sex=="女")?"selected":"") value="女">女</option> 
+            </select>
+        </div>
+    </div>  
+    <div class="form-group">
+        <label class="control-label col-sm-2">自我描述</label>
+        <div class="col-sm-6">
+            <input type="text" id="discription" class="form-control" value="#(user.discription??)" name="user.discription" />
+        </div>
+    </div>
+
+    #if(user==null)
+    <div class="form-group">
+        <label class="control-label col-sm-2">密码</label>
+        <div class="col-sm-6">
+            <input type="password" id="password" class="form-control" name="user.psw" />
+        </div>
+    </div>
+    #end 
+</form>
+
+
+
+	<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/jquery.form/4.2.2/jquery.form.min.js"></script>
+    <script src="https://cdn.bootcss.com/layer/3.1.0/layer.js"></script>
+	<script type="text/javascript">
+	function submitThisForm(){		
+	          $("#form").submit();
+				
+	}
+
+	  </script>
+ </body> 
+
+</html>

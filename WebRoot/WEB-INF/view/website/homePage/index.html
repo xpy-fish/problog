@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<base href="#(basepath)">
+    <meta charset="UTF-8">
+    <title>WHUT博客</title>
+<!--     <link href="http://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css"  rel="stylesheet"> -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet"  type="text/css"  href="asset/css/common.css">
+    <link rel="stylesheet"  type="text/css"  href="asset/css/webHeadNav.css">
+</head>
+<body>
+<!-- 主页面导航条 -->
+		<div class="person_nav">
+			<nav class="navbar navbar-default">
+			  <div class="container-fluid">
+			    <!-- Brand and toggle get grouped for better mobile display -->
+			    <div class="navbar-header">
+			      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+			        <span class="sr-only">Toggle navigation</span>
+			        <span class="icon-bar"></span>
+			        <span class="icon-bar"></span>
+			        <span class="icon-bar"></span>
+			      </button>
+			      <a class="navbar-brand blog_person_logo" style="height:60px;color:#337ab7" href="#">启程·博客</a>
+			    </div>
+			
+			    <!-- Collect the nav links, forms, and other content for toggling -->
+			    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			      <ul class="nav navbar-nav">
+			        <li><a href="website/homePage">首页</a></li>
+			        <li><a href="website/column">专栏</a></li>
+			        <li><a href="website/message">消息</a></li>
+			        <li><a href="#">下载app</a></li>      
+			      </ul>
+			      <form id="searchForm" class="navbar-form navbar-left" action="website/search" method="post" target="_blank">
+			        <div class="input-group">
+			        	<input type="hidden" name="homeSearch" value="true"/>
+			            <input type="text" name="searchContent" class="form-control" placeholder="Search">
+				        <span class="input-group-btn">
+					        <button onclick="doFormSubmit()" class="btn btn-default">
+					        	<span class="glyphicon glyphicon-search"></span>
+					        </button>
+					    </span>
+				    </div>
+			      </form>
+			      <!--没有登录的情况-->
+			      <ul class="nav navbar-nav navbar-right" id="logstate">
+			          <li><a class="blog_head_nav_login" id="sign_in" href="website/login">登录</a></li>
+		              <li><a class="blog_head_nav_signup" style="color:red" id="sign_up" href="website/register">注册</a></li>
+			          <li class="dropdown" id = "loginfo">
+		                 <a href="#" class="dropdown-toggle" style="margin-top:-12px;margin-bottom:-12px" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><img id="logicon" class="img-circle blog_head_icon" src="asset/img/boke.jpg" alt="头像"/> <span class="caret"></span></a>
+		                 <ul class="dropdown-menu">
+				            <li><a href="website/user">我的主页</a></li>
+				            <li><a href="#">个人信息</a></li>
+				            <li><a href="#">喜欢的文章</a></li>
+				            <li role="separator" class="divider"></li>
+				            <li><a href="website/homePage/logout">退出登录</a></li>
+		                </ul>
+		             </li> 
+						 <li class="blog_head_nav_a"><a class="blog_head_nav_write"  target="_blank" href="website/article">
+						     <span class="glyphicon glyphicon-pencil"></span>写博客
+						     </a>
+						 </li>
+			     </ul>
+			  </div>
+		</div>
+	</nav>
+</div>
+   
+<!--------------------------------------------------------- 头疼的主界面----------------------------------------------------------------- -->
+<div class="blog_main_container" >
+        <div class="container">      
+            <div class="row blog_main_container_row">
+                <div class="col-lg-8 col-md-8 col-sm-8 blog_main_container_left">
+                    <div class="panel panel-default">
+                    
+<div class="panel-body">
+                           
+<!-- --------------------------------------------------------划部分--------------------------------------------------------------------- -->
+<div id="ppt" class="carousel slide" data-ride="carousel">
+                          <!-- Indicators -->
+    <ol class="carousel-indicators">
+        <li data-target="#ppt" data-slide-to="0" class="active"></li>
+        <li data-target="#ppt" data-slide-to="1"></li>
+        <li data-target="#ppt" data-slide-to="2"></li>
+        <li data-target="#ppt" data-slide-to="3"></li>
+        <li data-target="#ppt" data-slide-to="4"></li>
+    </ol>
+    
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner" role="listbox">
+     
+        <a class="item active"  id="hua_a0">
+            <img id="hua_img0"style="width: 100%;height: 350px" >
+            <div class="carousel-caption">
+                <h3 id="hua_0"></h3>
+            </div>
+        </a>
+        
+    
+        <a class="item"  id="hua_a1">
+            <img id="hua_img1"style="width: 100%;height: 350px" >
+            <div class="carousel-caption">
+                <h3 id="hua_1"></h3>
+            </div>
+        </a>
+        
+        <a class="item"  id="hua_a2">
+            <img id="hua_img2" style="width: 100%;height: 350px" >
+            <div class="carousel-caption">
+               <h3 id="hua_2"></h3>
+            </div>
+        </a>
+        
+        <a class="item"  id="hua_a3">
+            <img id="hua_img3"style="width: 100%;height: 350px" >
+            <div class="carousel-caption">
+                <h3 id="hua_3"></h3>
+            </div>
+        </a>
+        
+        <a class="item"  id="hua_a4">
+            <img id="hua_img4"style="width: 100%;height: 350px" >
+            <div class="carousel-caption">
+                <h3 id="hua_4"></h3>
+            </div>
+        </a>
+       
+    </div>
+
+    <!-- Controls -->
+    <a class="left carousel-control" href="#ppt" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#ppt" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right"></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div>
+
+                            
+<!-- ------------------------------------------------------左边主要部分------------------------------------------------------------------ -->   
+<div class="blog_articles" id="cichu">
+
+</div>                                       
+<!-- -------------------------------------------------------加载更多------------------------------------------------------------ -->						
+</div>
+
+<div class="aa">
+	<div class="panel-body bb">
+	    	<button class="jiazai" id="more-act">加载更多......</button>
+ 	</div> 
+</div>
+		
+</div>
+</div>
+                    
+<!-- -----------------------------------------------右边分布--------------------------------------------------------------- -->           
+                <div class="col-lg-4 col-md-4 col-sm-4 blog_main_container_right">
+<!-- -----------------------------------------------热门文章---------------------------------------------------------------- -->          
+<div class="panel panel-default">
+	<div class="panel-body">
+		<h3>热门文章</h3>
+	<ul class="list-group">
+  		<li class="list-group-item list-group-item-success"><a id="hotwenlink1"><h4 id="hotwen1"><p ><label class="click_num"><span class="badge" id="clickNum1">点击量：</span></label></p></h4></a></li>
+  		<li class="list-group-item list-group-item-info"><a id="hotwenlink2"><h4 id="hotwen2"><p><label class="click_num"> <span class="badge" id="clickNum2">点击量：</span></label></p></h4></a></li>
+  		<li class="list-group-item list-group-item-warning"><a id="hotwenlink3"><h4 id="hotwen3"><p><label class="click_num"><span class="badge" id="clickNum3">点击量：</span></label></p></h4></a></li>
+  		<li class="list-group-item list-group-item-danger"><a id="hotwenlink4"><h4 id="hotwen4"><p><label class="click_num"><span class="badge" id="clickNum4">点击量：</span></label></p></h4></a></li>
+	</ul>
+	</div>
+</div>
+<!-- ------------------------------------------------待定功能------------------------------------------------------------------- -->
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+							<h3>热门评论</h3>
+							<h4>昨夜雨疏风骤</h4>
+							<label>点击量：10万+</label>
+							<h4>昨夜雨疏风骤</h4>
+							<label>点击量：10万+</label>
+							<h4>昨夜雨疏风骤</h4>
+							<label>点击量：10万+</label>
+							<h4>昨夜雨疏风骤</h4>
+							<label>点击量：10万+</label>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+
+                        </div>
+                    </div>
+                </div>
+                </div>
+                </div>
+            </div>
+
+   
+<!----------------------------------------------------尾部部分------------------------------------------------------------- -- -->
+    <div class="blog_footer">
+        <div class="blog_footer_link">
+            <div class="container">
+                <h4>友情链接</h4>
+                <div class="line"><div></div></div>
+                <p class="blog_links">
+                    <a href="http://www.xiaomuedu.com" target="_blank">小木学堂</a>
+                    <a href="http://www.xiaomuedu.com" target="_blank">小木学堂</a>
+                    <a href="http://www.xiaomuedu.com" target="_blank">小木学堂</a>
+                    <a href="http://www.xiaomuedu.com" target="_blank">小木学堂</a>
+                    <a href="http://www.xiaomuedu.com" target="_blank">小木学堂</a>
+                    <a href="http://www.xiaomuedu.com" target="_blank">小木学堂</a>
+                    <a href="http://www.xiaomuedu.com" target="_blank">小木学堂</a>
+                </p>
+            </div>
+       	</div>
+        <div class="blog_footer_copyright">Copyright © Our Blog 鄂ICP备*******号</div>
+    </div>
+</body >
+<!-- <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script> -->
+<!-- <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+function doFormSubmit(){
+	var str = $("input[name='searchContent']").val();
+	if(str.replace(/\s+/g,"")==null){
+		alert("请输入内容");
+	}else{
+		$("#searchForm").submit();
+	}	
+}
+function createDiv(i){
+	var ht = '<div class="line"><div></div></div>'+
+	'<div class="aa row">'+
+	'<div class="col-lg-8 col-md-8 col-sm-8 left_arts">'+
+	    '<h3 style="margin-top: 10px;margin-bottom: 0px;"><a id="title'+i+'" style="color:black;font-weight:bold;"></a></h3>'+
+	    '<p class="ll" id="aut'+i+'">文/苏</p>'+
+	    '<p class="person_article_remark" id="s_content'+i+'"></p>'+
+	'</div>'+
+	'<div class="col-lg-4 col-md-4 col-sm-4 right_imgs">'+
+	    '<a><img  id="xiaoyu'+i+'" ></a>'+
+	'</div>'+
+	'</div>'+
+	'<div>'+
+	'<div  style="display:inline-block;"><button class="glyphicon glyphicon-comment" style="border:none;background:white;color:gray;dispaly:inline-block;" ><span id="commentN'+i+'" style="margin-left:5px;"></apan></button></div>'+
+	'<div  style="display:inline-block;"><button class="glyphicon glyphicon-heart" style="border:none;background:white;color:gray;" ><span id="collectN'+i+'"style="margin-left:5px;"></apan></button></div>'+
+	'</div>';
+	$("#cichu").append(ht);
+}
+
+function ct(a,b){
+	$.ajax({
+		type:"get",
+		datatype:"json",
+		url:"website/homePage/list?p="+b,
+		success:function(result){
+		console.log(result);
+		var j=0;
+		for(i=a;i<b;i++){
+			if(result.jsonData[j]==null){
+					$("#more-act").attr("onclick","dianji");
+					$("#more-act").text("已经到底了！！！");
+			}else{
+				createDiv(i);
+				document.getElementById("xiaoyu"+i).src=result.jsonData[j].c_url_img;
+				$("#title"+i).text(result.jsonData[j].title);
+				document.getElementById("title"+i).href="website/homePage/art1?title_id="+result.jsonData[j].id;
+				$("#s_content"+i).text(result.jsonData[j].s_content);
+				$("#aut"+i).text("文/"+result.jsonData[j].author);
+				if(result.jsonData[j].comN){
+					$("#commentN"+i).text(result.jsonData[j].comN);
+				}else{
+					$("#commentN"+i).text(0);
+				}
+				if(result.jsonData[j].art_collect){
+					$("#collectN"+i).text(result.jsonData[j].art_collect);
+				}else{
+					$("#collectN"+i).text(0);
+				}
+			}
+			j++;
+		}
+	}});	
+}
+		
+$(document).ready(function(){
+	if(#(state??)){
+		$("#sign_in").hide();
+		$("#sign_up").hide(); 
+		document.getElementById("logicon").src = "#(icon??)"; 
+	}else{
+		$("#loginfo").hide();
+	}
+	splits();
+	var n=5;
+	ct(0,n);
+	$.ajax({
+		type:"get",
+		datatype:"json",
+		url:"website/homePage/hotwen",
+		success:function(data){
+			$("#hotwen1").prepend(data.hotwenData[0].title);
+			$("#hotwen2").prepend(data.hotwenData[1].title);
+			$("#hotwen3").prepend(data.hotwenData[2].title);
+			$("#hotwen4").prepend(data.hotwenData[3].title);
+			$("#clickNum1").append(data.hotwenData[0].clickN);
+			$("#clickNum2").append(data.hotwenData[1].clickN);
+			$("#clickNum3").append(data.hotwenData[2].clickN);
+			$("#clickNum4").append(data.hotwenData[3].clickN);
+			document.getElementById("hotwenlink1").href="website/homePage/art1?title_id="+data.hotwenData[0].id;
+			document.getElementById("hotwenlink2").href="website/homePage/art1?title_id="+data.hotwenData[1].id;
+			document.getElementById("hotwenlink3").href="website/homePage/art1?title_id="+data.hotwenData[2].id;
+			document.getElementById("hotwenlink4").href="website/homePage/art1?title_id="+data.hotwenData[3].id;
+		}
+	});
+	$("#more-act").click(function(){
+		n = n + 5;
+		ct(n-5,n);
+	});
+	
+});
+
+function splits(){
+	$.ajax({
+		taye:"get",
+		url:"website/homePage/splits",
+		datatype:"json",
+		//data:{"id1":Math.ceil(Math.random()*10),"id2":Math.ceil(Math.random()*10),},
+		success:function(data){
+			console.log(data);
+			for(i=0;i<5;i++){
+				document.getElementById("hua_a"+i).href="website/homePage/art1?title_id="+data.sptData[i].id;
+				document.getElementById("hua_img"+i).src=data.sptData[i].c_url_img;
+				$("#hua_"+i).text(data.sptData[i].title);
+			}
+		}
+	});
+}
+  </script>
+  
+</html>
