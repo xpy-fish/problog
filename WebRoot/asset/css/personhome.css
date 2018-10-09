@@ -13,14 +13,14 @@ html,body{
 	margin-bottom: 10px;
 }
 .person_header{ 
-	background-image:url(asset/img/backpic1.jpg) ;
+	background:url(../img/backpic1.jpg) ;
 	height: 140px;
 	width: 100%; 	
 	margin-bottom: -140px;
 	position: relative;
 }
 .person_head{
-	background-image:url(asset/img/backpic1.jpg) ;
+	background:url(../img/backpic1.jpg) ;
 	margin-top:60px;
 	height:80px;
 }
