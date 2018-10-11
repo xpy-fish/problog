@@ -1,0 +1,75 @@
+html,body{
+    
+    font-family: "Helvetica Neue", Helvetica, Arial, "Hiragino Sans GB",
+ "Hiragino Sans GB W3","Times New Roman", "幼圆","Microsoft YaHei UI", "Microsoft YaHei",
+ "WenQuanYi Micro Hei", sans-serif;
+ background:url(../img/bodybg.png);
+}
+
+
+/*******************���li��CSS��ʽ******************************/
+.blist{
+    list-style: none;
+}
+.blist span{
+	color:#333;
+}
+.blist li:hover{
+    background: #f0f0f0;
+}
+.active{
+    background:#f0f0f0
+}
+.blist li{
+    cursor: pointer;
+    width: 100%;
+    height: 52px;
+    border-radius: 5px;
+    padding: 10px 25px 10px 25px;
+}
+.blist li a{
+    cursor: pointer;
+    color: #333;
+    text-decoration: none;
+}
+.blist li i{
+    margin-right: 15px;
+    font-size: 24px;
+    color: #ea6f5a;
+    vertical-align: middle;
+}
+.blist li span{
+    font-size:18px;
+    vertical-align: middle;
+}
+/*******************�ұ�comment-list��CSS��ʽ******************************/
+.comment-list{
+    list-style: none;
+}
+.header_comment a:hover{
+    background-color: #f0f0f0;
+}
+/********************��ע��***********************************************/
+.navbar-nav a {
+    padding: 13px 20px;
+    font-size: 15px;
+    font-weight: 700;
+    color: #969696;
+    line-height: 25px;
+}
+
+.navbar-nav li:hover{
+    color: #646464;
+    border-bottom:solid 2px #555;
+}
+.user-active{
+    border-bottom:solid 2px #555;
+}
+.user-active a{
+    color: #555;
+    background:#f0f0f0
+}
+.navbar-nav li{
+    cursor: pointer;
+    position: relative;
+}

@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<base href="#(basepath)">
+		<meta charset="utf-8" />
+		<title>搜索界面</title>
+<!-- 		<link href="http://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"> -->
+		<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+	    <link rel="stylesheet"  type="text/css"  href="asset/css/search.css">
+    	<link rel="stylesheet"  type="text/css"  href="asset/css/webHeadNav.css">
+
+	</head>
+	<body>
+		<!-- 主页面导航条 -->
+     
+		<div class="search_nav">
+			<nav class="navbar navbar-default">
+			  <div class="container-fluid">
+			    <!-- Brand and toggle get grouped for better mobile display -->
+			    <div class="navbar-header">
+			      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+			        <span class="sr-only">Toggle navigation</span>
+			        <span class="icon-bar"></span>
+			        <span class="icon-bar"></span>
+			        <span class="icon-bar"></span>
+			      </button>
+			      <a class="navbar-brand blog_person_logo" style="height:60px;color:#337ab7" href="#">启程·博客</a>
+			    </div>
+			
+			    <!-- Collect the nav links, forms, and other content for toggling -->
+			    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			      <ul class="nav navbar-nav">
+			        <li><a href="website/homePage">首页</a></li>
+			        <li><a href="website/column">专栏</a></li>
+			        <li><a href="website/message">消息</a></li>
+			        <li><a href="#">下载app</a></li>      
+			      </ul>
+			      
+			     
+			      
+			      
+			       <form id="searchForm" class="navbar-form navbar-left" action="website/search" method="post" target="_blank">
+			        <div class="input-group">
+			            <input type="text" name="searchContent" class="form-control" placeholder="Search">
+				        <span class="input-group-btn">
+					        <button onclick="doFormSubmit()" class="btn btn-default">
+					        	<span class="glyphicon glyphicon-search"></span>
+					        </button>
+					    </span>
+				    </div>
+			      </form>
+			      
+			      <!--没有登录的情况-->
+			      <ul class="nav navbar-nav navbar-right" id="logstate">
+			          <li><a class="blog_head_nav_login" id="sign_in" href="website/login">登录</a></li>
+		              <li><a class="blog_head_nav_signup" style="color:red" id="sign_up" href="website/register">注册</a></li>
+			          <li class="dropdown" id = "loginfo">
+		                 <a href="#" class="dropdown-toggle" style="margin-top:-12px;margin-bottom:-12px" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><img id="logicon" class="img-circle blog_head_icon" src="asset/img/boke.jpg" alt="头像"/> <span class="caret"></span></a>
+		                 <ul class="dropdown-menu">
+				            <li><a href="website/user">我的主页</a></li>
+				            <li><a href="#">个人信息</a></li>
+				            <li><a href="#">喜欢的文章</a></li>
+				            <li role="separator" class="divider"></li>
+				            <li><a href="website/user/logout">退出登录</a></li>
+		                </ul>
+		             </li> 
+						 <li class="blog_head_nav_a"><a class="blog_head_nav_write"  target="_blank" href="website/article">
+						     <span class="glyphicon glyphicon-pencil"></span>写博客
+						     </a>
+						 </li>
+			     </ul>
+			  </div>
+		</div>
+	</nav>
+</div>
+
+<!-----------------------中间------------------------------------------->
+		<div class="search_main">
+			<div class="container search_container">
+				<div class="row search_main_row">
+					<!----------左边信息区域----------->
+					<div class="col-lg-3 col-md-3 search_left">
+						<div class="panel panel-default search_msg">
+							<div class="panel-heading">
+								<span>热门搜索</span>
+								<a id="moremsg" class="pull-right" href="javascript:;">更多</a>
+							</div>					
+							<div class="panel-body" >
+								
+										<ul class="detail-list">
+											<li class="qz-grid">web开发</li> 
+											<li class="qz-grid">毕业</li> 
+											<li class="qz-grid">小程序</li> 
+											<li class="qz-grid">理财</li> 
+											<li class="qz-grid">故事</li> 
+										</ul>	
+								
+							</div>
+						</div>
+						
+						
+						<!--<div class="search-trending">
+							<div class="search-trending-header clearfix">
+								<span>热门搜索</span> 
+								<a><i class="iconfont ic-search-change" style="transform: rotate(0deg);"></i> 换一批</a>
+							</div> 
+							<ul class="search-trending-tag-wrap">
+								<li><a href="/search?q=%E8%A1%8C%E8%B7%9D%E6%9D%AF2018%E5%BE%81%E6%96%87&amp;utm_source=desktop&amp;utm_medium=search-trending" target="_blank">行距杯2018征文</a></li>
+								<li><a href="/search?q=%E5%8C%BA%E5%9D%97%E9%93%BE&amp;utm_source=desktop&amp;utm_medium=search-trending" target="_blank">区块链</a></li>
+								<li><a href="/search?q=%E5%B0%8F%E7%A8%8B%E5%BA%8F&amp;utm_source=desktop&amp;utm_medium=search-trending" target="_blank">小程序</a></li>
+								<li><a href="/search?q=vue&amp;utm_source=desktop&amp;utm_medium=search-trending" target="_blank">vue</a></li>
+								<li><a href="/search?q=%E8%8E%AB%E5%AB%A1&amp;utm_source=desktop&amp;utm_medium=search-trending" target="_blank">莫嫡</a></li>
+								<li><a href="/search?q=%E6%AF%95%E4%B8%9A&amp;utm_source=desktop&amp;utm_medium=search-trending" target="_blank">毕业</a></li>
+								<li><a href="/search?q=PHP&amp;utm_source=desktop&amp;utm_medium=search-trending" target="_blank">PHP</a></li>
+								<li><a href="/search?q=%E6%95%85%E4%BA%8B&amp;utm_source=desktop&amp;utm_medium=search-trending" target="_blank">故事</a></li>
+								<li><a href="/search?q=flutter&amp;utm_source=desktop&amp;utm_medium=search-trending" target="_blank">flutter</a></li>
+								<li><a href="/search?q=%E7%90%86%E8%B4%A2&amp;utm_source=desktop&amp;utm_medium=search-trending" target="_blank">理财</a></li>
+							</ul>
+						</div>
+						-->
+						
+						
+						
+						
+						
+					</div>
+					<!----------右边文章列表区域------------>
+					<div class="col-lg-9 col-md-9 search_right">
+						<!--搜索的相关用户区域-->
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<span>相关用户</span>
+								<!--<a id="moremsg" class="pull-right" href="javascript:;">更多</a>-->
+							</div>	
+							<div class="panel-body"> 
+								<div class="top">
+									<div class="relevant_user">
+										<a class="function-btn">查看全部<i class="iconfont ic-arrow"></i></a>
+										<div class="container-fluid list"  id="userdiv">
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						
+						<!--搜索的相关专题区域-->
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<span>相关专题</span>
+								<!--<a id="moremsg" class="pull-right" href="javascript:;">更多</a>-->
+							</div>	
+							<div class="panel-body"> 
+								<div class="top">
+									<div class="relevant_subject">
+										<div class="container-fluid list">
+											<div class="col-xs-8"><a href="/c/0020d95b7928" target="_blank" class="avatar-collection">
+												<img src="//upload.jianshu.io/collections/images/36356/web%E5%BC%80%E5%8F%91.JPG?imageMogr2/auto-orient/strip|imageView2/1/w/144/h/144/format/webp"></a> 
+												<div class="info">
+													<a href="/c/0020d95b7928" target="_blank" class="name">前端开发那些事</a> 
+													<!--<div class="meta">2277 文章・5132 关注</div>-->
+												</div>
+											</div>
+											<div class="col-xs-8">
+												<a href="/c/0606963ad810" target="_blank" class="avatar-collection">
+													<img src="//upload.jianshu.io/collections/images/655/20140608110805836_easyicon_net_128.png?imageMogr2/auto-orient/strip|imageView2/1/w/144/h/144/format/webp"></a> 
+													<div class="info">
+														<a href="/c/0606963ad810" target="_blank" class="name">Web 前端开发 </a> 
+														<!--<div class="meta">5350 文章・4501 关注</div>-->
+													</div>
+											</div>
+											<div class="col-xs-8">
+												<a href="/c/7c5a95f65440" target="_blank" class="avatar-collection">
+													<img src="//upload.jianshu.io/collections/images/226506/Unofficial_JavaScript_logo_2.svg.png?imageMogr2/auto-orient/strip|imageView2/1/w/144/h/144/format/webp"></a> 
+													<div class="info"><a href="/c/7c5a95f65440" target="_blank" class="name">前端进阶之路</a> 
+														<!--<div class="meta">175 文章・2365 关注</div>-->
+													</div>
+											</div>
+											<div class="col-xs-8">
+												<a href="/c/7c5a95f65440" target="_blank" class="avatar-collection">
+													<img src="//upload.jianshu.io/collections/images/226506/Unofficial_JavaScript_logo_2.svg.png?imageMogr2/auto-orient/strip|imageView2/1/w/144/h/144/format/webp"></a> 
+													<div class="info"><a href="/c/7c5a95f65440" target="_blank" class="name">前端进阶之路</a> 
+														<!--<div class="meta">175 文章・2365 关注</div>-->
+													</div>
+											</div>
+											<div class="col-xs-8">
+												<a href="/c/7c5a95f65440" target="_blank" class="avatar-collection">
+													<img src="//upload.jianshu.io/collections/images/226506/Unofficial_JavaScript_logo_2.svg.png?imageMogr2/auto-orient/strip|imageView2/1/w/144/h/144/format/webp"></a> 
+													<div class="info"><a href="/c/7c5a95f65440" target="_blank" class="name">前端进阶之路</a> 
+														<!--<div class="meta">175 文章・2365 关注</div>-->
+													</div>
+											</div>
+											<div class="col-xs-8">
+												<a href="/c/7c5a95f65440" target="_blank" class="avatar-collection">
+													<img src="//upload.jianshu.io/collections/images/226506/Unofficial_JavaScript_logo_2.svg.png?imageMogr2/auto-orient/strip|imageView2/1/w/144/h/144/format/webp"></a> 
+													<div class="info"><a href="/c/7c5a95f65440" target="_blank" class="name">前端进阶之路</a> 
+														<!--<div class="meta">175 文章・2365 关注</div>-->
+													</div>
+											</div>
+											<div class="col-xs-8">
+												<a href="/c/7c5a95f65440" target="_blank" class="avatar-collection">
+													<img src="//upload.jianshu.io/collections/images/226506/Unofficial_JavaScript_logo_2.svg.png?imageMogr2/auto-orient/strip|imageView2/1/w/144/h/144/format/webp"></a> 
+													<div class="info"><a href="/c/7c5a95f65440" target="_blank" class="name">前端进阶之路</a> 
+														<!--<div class="meta">175 文章・2365 关注</div>-->
+													</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						
+						
+						
+						
+					
+				
+						
+						<!--搜索的相关文章区域-->
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<span>相关文章</span>
+							</div>	
+							<div class="panel-body"> 
+								<!--文章-->
+								<div class="search_articles" id="artdiv">
+								
+									
+								
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+								
+									
+		
+		
+		</div>
+		
+		
+<!-----------------------------------footer------------------------------------->
+		<div class="search_footer">
+			<div class="container footer_link">
+				<h4>友情链接</h4>
+				<hr />
+				<div class="links">
+					<a href="#" target="_blank">某某博客</a>
+					<a href="#" target="_blank">某某博客</a>
+					<a href="#" target="_blank">某某博客</a>
+					<a href="#" target="_blank">某某博客</a>
+					<a href="#" target="_blank">某某博客</a>
+					<a href="#" target="_blank">某某博客</a>	
+				</div>
+				
+			</div>
+			<div class="footer_copyright">Copyright*****.All Rights Reserved.</div>
+		
+		
+		</div>
+		
+<!-- 		<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script> -->
+<!-- 		<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/layer/2.3/layer.js"></script>
+<!-- 		<script src="https://cdn.bootcss.com/layer/3.1.0/layer.js"></script> -->
+	</body>
+	<script type="text/javascript">
+
+	   //判断是否登陆
+		 $(document).ready(function(){			  
+			 if(#(state??)){
+					$("#sign_in").hide();
+					$("#sign_up").hide(); 
+					document.getElementById("logicon").src = "#(icon??)"; 
+				}else{
+					$("#loginfo").hide();
+					}
+			 	$.ajax({
+					type:"get",
+					datatype:"json",
+					data:{"keyword":"#(searchContent??)"}, 
+					url:"website/search/finding",
+						success:function(result){
+					 	console.log(result); 
+						for(i=0;i<result.userData.length;i++){   //这里需要确定userdata的length
+							 userDiv(i);
+							 document.getElementById("icon"+i).src=result.userData[i].icon;	
+							$("#username"+i).text(result.userData[i].nolname);						
+						}
+						for(i=0;i<result.artData.length;i++){
+							artDiv(i);
+							document.getElementById("pic"+i).src=result.artData[i].c_url_img;
+							document.getElementById("title"+i).href=result.artData[i].c_url;
+							$("#title"+i).text(result.artData[i].title);							
+							$("#s_content"+i).text(result.artData[i].s_content);  
+						}
+					},
+					error:function(result){
+						alert("error");
+						}
+				});	 
+		 });
+		 function doFormSubmit(){
+				var str = $("input[name='searchContent']").val();
+				alert(str);
+				console.log(str);
+
+				//.replace(/\s+/g,"")
+				if(str.replace(/\s+/g,"") ==""){
+					alert("请输入内容");
+				}else{
+					$("#searchForm").submit();
+				}	
+		}
+			//渲染文章区域 
+		 	 function artDiv(j){
+					var ht='<div class="row search_article">'+
+					'<div class="col-lg-8 col-md-8 col-sm-8 articlebox">'+
+					'<h3 ><a id="title'+j+'",href=""></a></h3>'+
+					'<p class="search_article_remark" id="s_content'+j+'"></p>'+
+					'</div>'+
+					'<div class="col-lg-4 col-md-4 col-sm-4 imgbox">'+
+					'<a><img  id="pic'+j+'",src="" ></a>'+
+					'</div>'+
+					'</div>'
+					$("#artdiv").append(ht);
+					}
+		 	
+				//渲染用户区域
+			function userDiv(j){
+				var ht='<div class="col-xs-8">'+
+				'<a  id="home_url'+j+'" href="" target="_blank" class="avatar">'+
+				'<img  id="icon'+j+'" src="">'+
+				'</a>'+
+				'<div class="info">'+
+				'<a  id="home_url'+j+'" href="" target="_blank" class="name">'+
+				'<span id="username'+j+'"></span>'+
+				'</a>'+
+				'</div>'+
+				'</div>'
+				$("#userdiv").append(ht);
+			} 
+   </script>	
+</html>

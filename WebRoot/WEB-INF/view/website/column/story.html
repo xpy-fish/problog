@@ -1,0 +1,181 @@
+<!doctype html>
+<html>
+	<base href="#(basepath)">
+	<head>
+		<meta charset="utf-8">
+<!-- 		<link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"> -->
+		<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+<!-- 		<link href="https://cdn.bootcss.com/bootstrap-table/1.12.1/bootstrap-table.min.css" rel="stylesheet"> -->
+		<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.1/bootstrap-table.min.css" rel="stylesheet">
+		<link href="asset/css/webiframe.css" rel="stylesheet" />
+	</head>
+
+	<body>
+	<div class="container" style="height: 100%;">
+		<div class="blog_column_right_container">
+			<!-- 头部导航条 -->
+			<div class="blog_column_right_head">
+				<div class="blog_column_right_head_icon">
+					<a  href="story.html"><img id="columnIcon" src="asset/img/Hydrangeas.jpg" /></a>
+				</div>
+				<div class="blog_column_right_head_button">
+					<a href="story.html" class="btn btn-default" style="border-radius: 30px;">专题主页 ></a>
+				</div>
+				<div class="blog_column_right_head_title">
+					<a id="columnTitle" href="story.html"></a>
+				</div>
+				<div class="blog_column_right_head_count">
+					<a href="index.html">启程</a>编·收录了
+					<span>13583697</span>篇文章·
+					<span>123538445</span>人关注
+				</div>
+			</div>
+			
+			<!-- 栏目文章分类条 -->
+			<div  class="blog_column_right_menu">
+				<li id="menuInclu" class="active">
+					<a id="newInclu" style="cursor: pointer;"><i class="glyphicon glyphicon-book"></i>最新收录</a>
+				</li>
+				<li id="menuComm" class="">
+					<a id="newComm" style="cursor: pointer;"><i class="glyphicon glyphicon-comment"></i>最新评论</a>
+				</li>
+				<li id="menuHot" class="">
+					<a id="hot" style="cursor: pointer;"><i class="glyphicon glyphicon-fire"></i>热门文章</a>
+				</li>
+			</div>
+			<!-- 文章导航 -->
+			<div id="here">
+			</div>
+			<button class="blog_column_add_button" id="addBtn">加载更多</button>
+		</div>
+	</div>
+	<!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+<!-- 	<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script> -->
+	<!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+<!-- 	<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>	 -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script type="text/javascript">
+		var textHigh = 950;
+		
+		$(document).ready(function(){
+			console.log(#(tag));
+			//更改父窗口的高度，避免iframe出现滚动条
+			var x = window.parent.document.getElementById("rightContainer");
+			 x.style.height = textHigh+"px";
+// 			 更改栏目头像和标题
+			switch(#(tag??)){
+				case 1: document.getElementById("columnIcon").src = "asset/img/Hydrangeas.jpg";$("#columnTitle").text("故事");break;
+				case 2: document.getElementById("columnIcon").src = "asset/img/Jellyfish.jpg";document.getElementById("columnTitle").innerHTML = "摄影";break;
+				case 3: document.getElementById("columnIcon").src = "asset/img/Desert.jpg";document.getElementById("columnTitle").innerHTML = "自然科普";break;
+				case 4: document.getElementById("columnIcon").src = "asset/img/Koala.jpg";document.getElementById("columnTitle").innerHTML = "手绘";break;
+				case 5: document.getElementById("columnIcon").src = "asset/img/Penguins.jpg";document.getElementById("columnTitle").innerHTML = "读书";break;
+				case 6: document.getElementById("columnIcon").src = "asset/img/Tulips.jpg";document.getElementById("columnTitle").innerHTML = "启程电影";break;
+				case 7: document.getElementById("columnIcon").src = "asset/img/Chrysanthemum.jpg";document.getElementById("columnTitle").innerHTML = "@IT·互联网";break;
+				default:alert("swtich 出现错误");
+			}
+			
+			var n=4;
+			ct(0,n,1);
+			$("#addBtn").on("click",function(){
+				  n = n + 4;
+				  ct(n-4,n,1);
+				  textHigh += 660;
+				 var x = window.parent.document.getElementById("rightContainer");
+				 x.style.height = textHigh+"px";
+			});
+			$("#newInclu").click(function(){
+				document.getElementById("menuInclu").className = "active";
+				document.getElementById("menuComm").className = "";
+				document.getElementById("menuHot").className = "";
+				document.getElementById("here").innerHTML = "";
+				textHigh = 950;
+				n=4;
+				ct(n-4,n,1)
+				var x = window.parent.document.getElementById("rightContainer");
+				x.style.height = textHigh+"px";
+			});
+			$("#newComm").click(function(){
+				document.getElementById("menuInclu").className = "";
+				document.getElementById("menuComm").className = "active";
+				document.getElementById("menuHot").className = "";
+				document.getElementById("here").innerHTML = "";
+				textHigh = 950;
+				n=4;
+				ct(n-4,n,2)
+				var x = window.parent.document.getElementById("rightContainer");
+				x.style.height = textHigh+"px";
+			});
+			$("#hot").click(function(){
+				document.getElementById("menuInclu").className = "";
+				document.getElementById("menuComm").className = "";
+				document.getElementById("menuHot").className = "active";
+				document.getElementById("here").innerHTML = "";
+				textHigh = 950;
+				n=4;
+				ct(n-4,n,3)
+				var x = window.parent.document.getElementById("rightContainer");
+				x.style.height = textHigh+"px";
+			});
+		});
+		//创建文章导航条函数
+		function createDiv(i){
+			var ht = '<div class="blog_article">'+
+			           '<div class="blog_left_arts">'+
+						'<div class="blog_left_arts_title">'+
+					       '<a id="title'+i+'" target="_blank"></a>'+
+				        '</div>'+
+				        '<div class="blog_left_arts_author" >'+
+					       '<a id="aut'+i+'"></a>'+
+				         '</div>'+
+				         '<div class="blog_article_remark">'+
+					         '<p class="" id="s_content'+i+'"></p>'+
+				         '</div>'+
+			            '</div>'+
+						'<div class="blog_right_imgs">'+
+							'<a><img  id="xiaoyu'+i+'" ></a>'+
+						'</div>'+
+					    '<div  style="display:inline-block;"><span class="glyphicon glyphicon-comment" style="background-color:write;border:none;dispaly:inline-block;" ><span id="commentN'+i+'" style="margin-left:5px;"></span></span>'+
+					    '<div  style="display:inline-block;"><span class="glyphicon glyphicon-heart" style="background-color:write;border:none;" ><span id="collectN'+i+'"style="margin-left:5px;"></span></span>'+
+					'</div>';
+		  $("#here").append(ht);
+		}	
+		//从后台获取文章数据并显示
+		function ct(a,b,c){
+			$.ajax({
+				type:"get",
+				datatype:"json",
+				url:"website/column/list",
+				data:{"p":b,"tag":#(tag??),"c":c},
+				success:function(result){
+				console.log(result);
+				var j=0;
+				for(i=a;i<b;i++){
+					if(result.jsonData[j]==null){
+							$("#addBtn").attr("onclick","dianji");
+							$("#addBtn").text("已经到底了！！！");
+					}else{
+						createDiv(i);
+						document.getElementById("xiaoyu"+i).src=result.jsonData[j].c_url_img;
+						$("#title"+i).text(result.jsonData[j].title);
+						document.getElementById("title"+i).href="website/homePage/art1?title_id="+result.jsonData[j].id;
+						$("#s_content"+i).text(result.jsonData[j].s_content);
+						$("#aut"+i).text("文/"+result.jsonData[j].author);
+						if(result.jsonData[j].comN){
+							$("#commentN"+i).text(result.jsonData[j].comN);
+						}else{
+							$("#commentN"+i).text(0);
+						}
+						if(result.jsonData[j].art_collect){
+							$("#collectN"+i).text(result.jsonData[j].art_collect);
+						}else{
+							$("#collectN"+i).text(0);
+						}
+					}
+					j++;
+				}
+			}});	
+		}
+	</script>
+</body>
+</html>

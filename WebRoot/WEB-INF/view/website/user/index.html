@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html>
+	<head>
+<!-- 	    <base href="http://127.0.0.1/"> -->
+<base href="#(basepath)">
+		<meta charset="UTF-8">
+		<title>个人中心</title>
+<!-- 		<link href="http://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"> -->
+		<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="asset/css/personhome.css"/>
+		<link rel="stylesheet" type="text/css" href="asset/css/webHeadNav.css"/>
+	</head>
+	<body>
+     
+		<div class="person_nav">
+			<nav class="navbar navbar-default">
+			  <div class="container-fluid">
+			    <!-- Brand and toggle get grouped for better mobile display -->
+			    <div class="navbar-header">
+			      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+			        <span class="sr-only">Toggle navigation</span>
+			        <span class="icon-bar"></span>
+			        <span class="icon-bar"></span>
+			        <span class="icon-bar"></span>
+			      </button>
+			      <a class="navbar-brand blog_person_logo" style="height:60px;color:#337ab7" href="#">启程·博客</a>
+			    </div>
+			
+			    <!-- Collect the nav links, forms, and other content for toggling -->
+			    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			      <ul class="nav navbar-nav">
+			        <li><a href="website/homePage">首页</a></li>
+			        <li><a href="website/column">专栏</a></li>
+			        <li><a href="website/message">消息</a></li>
+			        <li><a href="#">下载app</a></li>      
+			      </ul>
+			      <form id="searchForm" class="navbar-form navbar-left" action="website/search" method="post" target="_blank">
+			        <div class="input-group">
+			        	<input type="hidden" name="homeSearch" value="true"/>
+			            <input type="text" name="searchContent" class="form-control" placeholder="Search">
+				        <span class="input-group-btn">
+					        <button onclick="doFormSubmit()" class="btn btn-default">
+					        	<span class="glyphicon glyphicon-search"></span>
+					        </button>
+					    </span>
+				    </div>
+			      </form>
+			      <!--没有登录的情况-->
+			      <ul class="nav navbar-nav navbar-right" id="logstate">
+			          <li><a class="blog_head_nav_login" id="sign_in" href="website/login">登录</a></li>
+		              <li><a class="blog_head_nav_signup" style="color:red" id="sign_up" href="website/register">注册</a></li>
+			          <li class="dropdown" id = "loginfo">
+		                 <a href="#" class="dropdown-toggle" style="margin-top:-12px;margin-bottom:-12px" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><img id="logicon" class="img-circle blog_head_icon" src="asset/img/boke.jpg" alt="头像"/> <span class="caret"></span></a>
+		                 <ul class="dropdown-menu">
+				            <li><a href="website/user">我的主页</a></li>
+				            <li><a href="#">个人信息</a></li>
+				            <li><a href="#">喜欢的文章</a></li>
+				            <li role="separator" class="divider"></li>
+				            <li><a href="website/user/logout">退出登录</a></li>
+		                </ul>
+		             </li> 
+						 <li class="blog_head_nav_a"><a class="blog_head_nav_write"  target="_blank" href="website/article">
+						     <span class="glyphicon glyphicon-pencil"></span>写博客
+						     </a>
+						 </li>
+			     </ul>
+			  </div>
+		</div>
+	</nav>
+</div>
+			<!--头部区域-->
+		    <div class="person_head">
+		          <div class="container">
+		       	  <!-- 头像区域 -->
+		       	  <div class="person_headpicture">
+		       	  	<a id="addheadpic" title="点击更换头像" href="javascript:;">
+		       	  		<img id="photourl"  class="user-avatar" alt="头像">
+		       	  	</a>
+		       	  	<div class="person_slogon">
+		       	  	<div class="person_author" id="nickname"></div>
+		       	  </div>
+		       	  </div>
+		       	  <!--标题区域-->
+		       	  
+		       </div>
+		   </div>
+		
+		
+<!-----------------------中间------------------------------------------->
+		<div class="person_main">
+			<div class="container person_container">
+				<div class="row person_main_row">
+					<!----------左边个人信息区域----------->
+					<div class="col-lg-3 col-md-3 person_left">
+						<!--数量信息-->
+						<div class="panel panel-default ">
+							<div class="panel-body numbermsg" >
+							
+									<ul class="stats-list numbermsg_list">
+										<li class="first">
+											<a id="A" href="javascript:;">
+												<strong id="articlesum"></strong>
+												<span>博客</span>
+											</a>
+										</li>
+										<li>
+											<a id="B" href="javascript:;">
+											<strong id="friends_like"></strong>
+											<span>关注</span>
+										    </a>
+										</li>
+										<li class="last">
+											<a id="C" href="javascript:;">
+											<strong id="friends_fans"></strong>
+											<span>粉丝</span>
+											</a>
+										</li>
+									</ul>
+									
+								</div>
+							
+						</div>
+						<div class="panel panel-default person_msg">
+							<div class="panel-heading">
+								<span>个人简介</span>
+								<!--如果是用户自己的话出现下面编辑按钮  -->
+								<!-- <a class="pull-right" id="moremsg">编辑</a> -->
+								<a id="moremsg" class="pull-right" href="javascript:;">编辑</a>
+							</div>					
+							<div class="panel-body" >
+								<div class="mod-profile person_msg_detail" id="profile-detail">
+									<div class="bd">
+										<ul class="detail-list">
+											<li class="qz-grid">
+													<span class="glyphicon glyphicon-user">&nbsp;</span>
+													<h4 id="sex"></h4>
+											</li> 
+											<li class="qz-grid">
+													<span class="glyphicon glyphicon-gift">&nbsp;</span>
+													<h4 id="birthday"></h4>
+											</li> 
+											<li class="qz-grid">
+												<span class="glyphicon glyphicon-home">&nbsp;</span>
+												<h4 id="discription"></h4>
+											</li>
+										</ul>
+									</div>
+									<b class="bottom"></b>
+								</div>
+							</div>
+						</div>
+						
+						
+					</div>
+					<!----------右边文章列表区域------------>
+					<div class="col-lg-9 col-md-9 person_right">
+						<div class="panel panel-default">
+							<div class="panel-body"> <!--style="height: 1000px;"-->
+								<!--文章-->
+								<div class="person_articles" id="cichu"></div>
+								
+								<div class="aa">
+									<div class="panel-body bb">
+									    	<button class="jiazai" id="more-act">加载更多......</button>
+								 	</div> 
+								</div>
+								
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+								
+									
+		
+		
+		</div>
+		
+		
+<!-----------------------------------footer------------------------------------->
+		<div class="person_footer">
+			<div class="container footer_link">
+				<h4>友情链接</h4>
+				<hr />
+				<div class="links">
+					<a href="#" target="_blank">某某博客</a>
+					<a href="#" target="_blank">某某博客</a>
+					<a href="#" target="_blank">某某博客</a>
+					<a href="#" target="_blank">某某博客</a>
+					<a href="#" target="_blank">某某博客</a>
+					<a href="#" target="_blank">某某博客</a>	
+				</div>
+				
+			</div>
+			<div class="footer_copyright">Copyright*****.All Rights Reserved.</div>
+		
+		
+		</div>
+		
+<!-- 		<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script> -->
+<!-- 		<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/layer/2.3/layer.js"></script>
+<!-- 		<script src="https://cdn.bootcss.com/layer/3.1.0/layer.js"></script> -->
+	
+	<script >
+	    var id = 0;
+		//$("#addheadpic").img.src = getSessionAttr("picUrl");
+
+        //修改头像
+		$("#addheadpic").on("click",function(){  
+	          edit(); }); //调用了下面的edit方法
+        
+	    	     
+	      function edit(){
+    	  layer.open({
+              type:2,
+              title:'修改头像',
+              area:['600px','400px'],
+              btn:['确定','取消'],
+              content:'website/user/edit',//调用了UserWebsiteController中的edit方法
+             yes: function(result){
+            	  console.log(result);
+            	 // alert("头像已修改");
+                  parent.layer.closeAll();
+                  location.reload(); }  
+                  
+                
+              }); 
+          }
+//渲染个人信息
+	      $(document).ready(function(){
+				$.ajax({
+					type:"get",
+					datatype:"json",
+					url:"website/user/homemsg",
+					success:function(result){
+						console.log(result);
+						/* document.getElementById("img").src=result.userData[0].c_url_img; */
+						/* $("#photourl").src = result.userData[0].photourl; */
+						document.getElementById("photourl").src=result.userData.icon;
+						$("#nickname").text(result.userData.nickname);
+						$("#articlesum").text(result.userData.articlesum);
+						$("#friends_like").text(result.userData.friends_like);
+						$("#friends_fans").text(result.userData.friends_fans);
+						$("#sex").text(result.userData.sex);
+						$("#birthday").text(result.userData.birthday);
+						$("#discription").text(result.userData.discription);
+						id = result.userData.id;
+						}
+					});	 
+				});
+
+//点击更多跳出编辑界面
+	     $("#moremsg").on("click",function(){
+		     editmsg(id);      //调用下面的editmsg方法
+		     });
+		     
+		  function editmsg(id){
+			  layer.open({
+	              type:2,
+	              title:'编辑',
+	              area:['600px','400px'],
+	              btn:['确定','取消'],
+	             /*  content:'website/user/editmsg/'+userid, */
+	              content:'website/user/editmsg/'+id,
+	              yes:function(index,layero){
+		              console.log(index);
+		              console.log(layero);
+	                  var iframeName=layero.find('iframe')[0]['name'];
+	                  var iframeWindow=window[iframeName];
+	                  console.log(iframeWindow);
+	                  iframeWindow.submitThisForm();
+	                  location.reload();
+	                 //调用了form中的submitThisForm方法
+	                  }
+	              }); 
+			  }   
+// 		  function submitThisForm(){		
+// 	          $("#form").submit();
+				
+// 	}
+/*---------------------------获取Json数据的长度--------------------------------*/		     
+function getJsonObjLength(jsonObj) {
+		var Length = 0;
+        for (var item in jsonObj) {
+           Length++;
+       }
+        return Length;
+}		     
+//渲染文章列表			
+	 	 function createDiv(j){
+				var ht='<div class="row person_article">'+
+				'<div class="col-lg-8 col-md-8 col-sm-8 articlebox">'+
+				'<h3 ><a id="title'+j+'",href=""></a></h3>'+
+				'<p class="person_article_remark" id="s_content'+j+'"></p>'+
+				'</div>'+
+				'<div class="col-lg-4 col-md-4 col-sm-4 imgbox">'+
+				'<a><img  id="xiaoyu'+j+'",src="" ></a>'+
+				'</div>'+
+				'</div>'
+				$("#cichu").append(ht);
+				}
+		
+			 function ct(a,b){
+					$.ajax({
+						type:"get",
+						datatype:"json",	
+						//data:jsonData,
+						/* jsonp:"callback",  */ //Jquery生成验证参数的名称
+						url:"website/user/homearticles",
+						success:function(result){
+						console.log(result);
+						var jsonlength =	getJsonObjLength(result.jsonData);
+						if(jsonlength < b){
+							b = jsonlength;
+							for(i=a;i<b;i++){
+								createDiv(i);
+								document.getElementById("xiaoyu"+i).src=result.jsonData[i].c_url_img;
+								document.getElementById("title"+i).href="website/homePage/art1?title_id="+result.jsonData[i].id;
+								//document.getElementById("title"+i).href=result.jsonData[i].c_url;
+								$("#title"+i).text(result.jsonData[i].title);							
+								$("#s_content"+i).text(result.jsonData[i].s_content);							
+								}
+						}else if(jsonlength != 0){
+							for(i=a;i<b;i++){
+								createDiv(i);
+								document.getElementById("xiaoyu"+i).src=result.jsonData[i].c_url_img;
+								document.getElementById("title"+i).href="website/homePage/art1?title_id="+result.jsonData[i].id;
+								$("#title"+i).text(result.jsonData[i].title);							
+								$("#s_content"+i).text(result.jsonData[i].s_content);							
+								}
+						}
+					},
+						error:function(result){
+							alert("saf");
+							}
+					});	
+				}
+		
+			$(document).ready(function(){
+				if(#(state??)){
+					$("#sign_in").hide();
+					$("#sign_up").hide(); 
+// 					document.getElementById("moremsg").show(); 无效 有 bug
+					document.getElementById("logicon").src = "#(icon??)"; 
+				}else{
+					$("#loginfo").hide();
+// 					document.getElementById("moremsg").hide();
+					}
+				var n = 5;
+				ct(0,5);
+				$("#more-act").click(function(){
+					n = n + 5;
+					ct(n-5,n);
+				});
+			});
+			function doFormSubmit(){
+				var str = $("input[name='searchContent']").val();
+				if(str.replace(/\s+/g,"")==null){
+					alert("请输入内容");
+				}else{
+					$("#searchForm").submit();
+				}	
+			} 
+ 
+   		</script>
+   	</body>
+</html>
